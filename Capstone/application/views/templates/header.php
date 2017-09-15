@@ -2,28 +2,37 @@
         <head>
                 <title>The Brewery</title>
 
-                <link rel = "stylesheet" href="bootstrap/css/bootstrap.css">
+                <link rel = "stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.css');?>"/>
+                <link rel = "stylesheet" href="<?= base_url('assets/custom/TheBreweryStyle.css');?>"/>
         </head>
 
        <header>
-       		<h1><center>The Brewery</center></h1>
+       		<h1><a href ="<?= base_url('index.php/Home');?>">The Brewery</a></h1>
 
        		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			  <a class="navbar-brand" href="#">Navbar</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			      <li class="nav-item">
+			        <a class="nav-link" href="<?= base_url('index.php/Home');?>">Home</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Link</a>
+			        <a class="nav-link" href="<?= base_url('index.php/About');?>">About</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link disabled" href="#">Disabled</a>
+			        <a class="nav-link" href="<?= base_url('index.php/Products');?>">Products</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="<?= base_url('index.php/News');?>">News</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="<?= base_url('index.php/FAQ');?>">FAQ</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="<?= base_url('index.php/Profile');?>">Profile</a>
 			      </li>
 			    </ul>
 			    <form class="form-inline my-2 my-lg-0">
@@ -33,3 +42,5 @@
 			  </div>
 			</nav>
        </header>
+
+       <div class = "container">

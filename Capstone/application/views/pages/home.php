@@ -1,6 +1,6 @@
-<h2>Homepage</h2>
 
-<body>
-	Welcome to the Brewery
+	<h2>Homepage</h2>
 
-</body>
+	<body>
+		Welcome to the Brewery	
+
