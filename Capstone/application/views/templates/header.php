@@ -32,7 +32,10 @@
 			        <a class="nav-link" href="<?= base_url('index.php/FAQ');?>">FAQ</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="<?= base_url('index.php/Profile');?>">Profile</a>
+			        <a class="nav-link" href="<?= base_url('index.php/Auth/login');?>">Login</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="<?= base_url('index.php/Profile/user');?>">Profile</a>
 			      </li>
 			    </ul>
 			    <form class="form-inline my-2 my-lg-0">
