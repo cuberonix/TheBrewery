@@ -19,7 +19,7 @@
   <div class="form-group">
     <label for="password">Password:</label>
     <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
-    <small id="createAccount"><a class="nav-link" style="color:blue" href="<?= base_url('index.php/Auth/register');?>">Forgot password? Click here</a></small>
+    <small id="createAccount"><a class="nav-link" style="color:blue" href="<?= base_url('index.php/forgottenpassword');?>">Forgot password? Click here</a></small>
   </div>
   <div class="form-group">
   <button type="submit" class="btn btn-primary" name = "login">Submit</button>

@@ -14,6 +14,10 @@
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 
+			  <ul class="dropdown-menu product" aria-labelledby="dropdownMenu">
+			  	<li><a href="#">Home</a></li>
+			  </ul>
+
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
 			      <li class="nav-item">
@@ -23,7 +27,7 @@
 			        <a class="nav-link" href="<?= base_url('index.php/About');?>">About</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="<?= base_url('index.php/Products');?>">Products</a>
+			        <a class="nav-link" href="<?= base_url('index.php/Products/all');?>">Products</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="<?= base_url('index.php/News');?>">News</a>

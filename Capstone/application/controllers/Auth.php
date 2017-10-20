@@ -54,9 +54,9 @@ class Auth extends CI_Controller {
 
         if(isset($_POST['register'])){
 			$this->form_validation->set_rules('username', 'Username', 'required');
-			$this->form_validation->set_rules('password', 'Password', 'required');
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[30]');
 			$this->form_validation->set_rules('password1', 'Confirm Password', 'required|matches[password]');
-			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required|min_length[5]');
 			
 			if($this->form_validation->run() == TRUE){
 
@@ -68,11 +68,20 @@ class Auth extends CI_Controller {
 					);
 				$this->db->insert('users', $data);
 
-				$this->session->set_flashdata("success", "Your account has been registered.");
-				redirect("auth/register", "refresh");
+				$this->session->set_flashdata("success", "Your account has been registered! You may now login.");
+				redirect("auth/login", "refresh");
 			}
 		}
         $this->load->view('pages/register');
         $this->load->view('templates/footer');
+    }
+
+    public function reset_password(){
+
+    	if(isset($_POST['email'])){
+    		$this->form_validation->set_rules('email', 'Email', 'required|min_length[6]');
+
+
+    	}
     }
 }
