@@ -18,3 +18,6 @@
 	<div>
 		To a degree, yes. When consumed in moderation it has been proven that beer can lead to improved health. Beer has been shown to help fight disease, increase the body’s levels of antioxidants, help prevent cancer, reduce menopausal hot flashes and fight off osteoporosis. Plus it's nutritious!
 	</div>
+</br>
+
+ –– The Brewery team

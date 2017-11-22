@@ -1,10 +1,14 @@
-</br>
 <?php if(isset($_SESSION['success'])) {?> 
         <div class="alert alert-success alert-dismissable">
         <span class="close" data-dismiss="alert" aria-label="close">
         &times;
     	</span> <?php echo $_SESSION['success']; }?> 
     	</div>
+
+    	<style type="text/css">
+  		 	body { background: white !important; }
+		</style>
+
 <div class ="container">
 <?php $username = $_SESSION['username']; ?>
 
@@ -17,18 +21,24 @@
 		$sql = mysqli_query($con, "SELECT id, username, age, location, favouritebeer, website, bio, user_type FROM users WHERE username = '" . $_SESSION['username'] . "'");
 		$row = mysqli_fetch_array($sql);
 	 ?>
-
 	</br>
     </br>
 <body>
-	<button type="submit" class="btn btn-primary" name = "editProfile" onclick ="location.href ='<?php echo base_url();?>index.php/Profile/editProfile'">Edit Profile</button>
-	
-	<button type="submit" class="btn btn-primary" name = "productManager" onclick ="location.href ='<?php echo base_url();?>index.php/Products/productManager'">Product Manager</button>
 
+	<button type="submit" class="btn btn-primary" name = "editProfile" onclick ="location.href ='<?php echo base_url();?>index.php/Profile/editProfile/<?php echo $username;?>'">Edit Profile</button>
+	</br>
+	</br>
+	
+	<?php if($_SESSION['username'] == "manager01"){ ?>
+		 <button type="submit" class="btn btn-primary" name = "productManager" onclick ="location.href ='<?php echo base_url();?>index.php/Products/productManager'">Product Manager</button>
+
+		 <button type="submit" class="btn btn-primary" name = "newsManager" onclick ="location.href ='<?php echo base_url();?>index.php/Manager/newsManager'">News Manager</button>
+	<?php } ?>
+	<?php if($_SESSION['username'] == "admin01") {?>
 	<button type="submit" class="btn btn-primary" name = "userManager" onclick ="location.href ='<?php echo base_url();?>index.php/Manager/userManager'">User Manager</button>
-	
-		</br>
 
+	<?php } ?>
+</br>
 </br>
 	<h4>User ID:</h4> <h5> <?php echo $row['id']; ?></h5>
 </br>

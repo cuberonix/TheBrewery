@@ -30,7 +30,8 @@ class Auth extends CI_Controller {
 
         			redirect("profile/user", "refresh");
         	} else {
-        		$this->session->set_flashdata("error", "User doesn't exist!");
+                redirect("auth/login", "refresh");
+        		$this->session->set_flashdata("error", " There was an error. Please try again.");
         		redirect("auth/login", "refresh");
         	}
         }
@@ -79,7 +80,15 @@ class Auth extends CI_Controller {
     public function reset_password(){
 
     	if(isset($_POST['email'])){
-    		$this->form_validation->set_rules('email', 'Email', 'required|min_length[6]');
+            $this->load->library('form_validation');
+    		$this->form_validation->set_rules('email', 'Email', 'required|min_length[6]|max_length[60]');
+
+            if($this->form_validation->run() == FALSE){
+
+                $this->load->view('templates/header');
+                $this->load->view('pages/forgottenpassword', array('error' => 'Please enter a valid email address.'));
+                $this->load->view('templates/footer');
+            }
 
 
     	}

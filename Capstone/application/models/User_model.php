@@ -29,8 +29,9 @@ class User_model extends CI_Model {
 	//	return $result;
 	 }
 
-	 public function updateUser($id)
+	 public function updateUser($username)
 	 {
+
 	 	$data = array(
 				'age' => $this->input->post('age'),
 				'location' => $this->input->post('location'),
@@ -39,17 +40,19 @@ class User_model extends CI_Model {
 				'bio' => $this->input->post('bio')
 				);
 
-	 	$this->db->where('id', $id);
-	 	$this->db->replace('users', $data);
-	 	return $id;
+	 	$this->db->select('*');
+	 	$this->db->where('username', $username);
+	 	$this->db->update('users', $data);
+	 	return $username;
 	 }
 
-	 public function getUser($id)
+	 public function getUser($username)
 	 {
 		$this->db->select('*');
-		$this->db->where('id', $id);
+		$this->db->where('username', $username);
 		$this->db->from('users');
 		$query = $this->db->get();
-		return $query->row();	 	
+		return $query->row_array();	 
+	
 	 }
 }

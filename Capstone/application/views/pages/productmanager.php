@@ -1,4 +1,3 @@
-</br>
 <h2>Product Manager</h2>
 </br>
 <body>

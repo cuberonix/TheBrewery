@@ -2,9 +2,24 @@
 
 <body>
 </br>
-	<h3>Girl Murders Bee, Local Hive Furious!</h3>
-	</br>
-	<p>Earlier today one of our own was put to rest. Billy, a product hive member. just wanted some sugar, 
-		a scent he picked up from the fresh chocolate chip cookies that we being made. His death will be avenged.
-	</br></br>
-		- The Hive</p>
+
+<div class = "row">
+	<div class = "col-md-6">
+<?php 
+$i = 0;
+foreach ($renews as $new): ?>
+
+        <h4><a href="<?php echo base_url(); ?>index.php/news/singlenews/<?php echo $new->news_id;?>"><?php echo $new->news_title;?></a></h4>
+        <?php echo $new->date_created;?>
+    </br>
+    </br>
+        <p><?php echo $new->news_body;?></p>
+
+</br>
+		<a href = "<?php echo base_url(); ?>index.php/news/show_comments/<?php echo $new->news_id;?>"><button class="btn btn-primary">Show Comments</button></a>
+
+<?php endforeach; ?>
+
+</br>
+</div>
+</div>

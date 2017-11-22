@@ -49,10 +49,13 @@ class Products extends CI_Controller {
         public function singleProduct($id)
         {
             $data['singleProduct'] = $this->product_model->singleProduct($id);
-
             $this->load->view('templates/header');
             $this->load->view('pages/singleproduct', $data);
             $this->load->view('templates/footer');
+
+            if(isset($_POST['reviews'])){
+                $this->reviews();
+            }
         }
 
         public function productManager()
@@ -71,5 +74,54 @@ class Products extends CI_Controller {
             $this->load->view('templates/header');
             $this->load->view('pages/editproduct', $data);
             $this->load->view('templates/footer');
+
+            if(isset($_POST['updatechanges'])) {
+                if($this->product_model->updateProduct($id)) {              
+                    $this->session->set_flashdata('success', 'Product updated!');
+                    redirect('products/productmanager', 'refresh');
+                }
+            }
+            if(isset($_POST['delete'])){
+                $this->product_model->deleteProduct($id);
+                redirect('products/productmanager', 'refresh');
+            }
+
+            if(isset($_POST['cancel'])){
+                redirect('products/productmanager', 'refresh');
+            }
+        }
+
+        public function reviews($id){
+
+            $product = $this->product_model->singleProduct($id);
+            $data['product'] = $product;
+            $this->load->view('templates/header');
+            $this->load->view('pages/reviews', $data);
+            $this->load->view('templates/footer');
+
+            if(isset($_POST['submitreview'])) {
+                if(empty($_POST['product_title']) || empty($_POST['product_rating']) OR empty($_POST['product_review'])){
+                    $this->session->set_flashdata('error', 'Please fill out all review fields.');
+                } else {
+                $review = array(
+                'product' => $this->input->post('product_id'),
+                'product_title' => $this->input->post('product_title'),
+                'product_rating' => $this->input->post('product_rating'),
+                'product_review' => $this->input->post('product_review'),
+                'user_id' => $this->input->post('user_id'),
+                );
+                
+                $this->product_model->reviews($review);
+
+                redirect($this->uri->uri_string());
+                }
+            } 
+        }
+
+        public function displayReviews(){
+            
+            $this->load->model('product_model');
+            $reviews = $this->product_model->displayReviews();
+            $review['reviews'] = $reviews;
         }
 }

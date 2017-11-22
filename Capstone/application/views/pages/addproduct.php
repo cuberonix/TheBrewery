@@ -1,4 +1,3 @@
-</br>
 <div class ="container">
 
 <h2>Add Product</h2>
