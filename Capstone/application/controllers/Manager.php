@@ -14,6 +14,34 @@ class Manager extends CI_Controller {
         	$this->load->view('templates/footer');
         }
 
+      public function editUser($id)
+      {  
+        $this->load->model('user_model');
+
+        $data['editUser'] = $this->user_model->editUser($id);
+
+        $this->load->view('templates/header');
+          $this->load->view('pages/edituser', $data);
+          $this->load->view('templates/footer');
+
+
+          if(isset($_POST['updateuser'])) {
+                if($this->user_model->updateUserManager($id)) {              
+                    $this->session->set_flashdata('success', 'User updated!');
+                    redirect('manager/usermanager', 'refresh');
+                }
+            }
+            if(isset($_POST['delete'])){
+                $this->news_model->deleteUser($id);
+                redirect('manager/usermanager', 'refresh');
+            }
+
+            if(isset($_POST['cancel'])){
+                redirect('manager/usermanager', 'refresh');
+            }
+
+      }
+
 
       public function newsManager()
       {		

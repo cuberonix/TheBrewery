@@ -31,11 +31,19 @@ class News extends CI_Controller {
                 $redata['renews'] = $renews;
                 $this->load->view('templates/header');
                 $this->load->view('pages/news', $redata);
-                $this->newsSide();
-                if(isset($_POST['showComments'])){
-                        $this->show_comments();
-                        $this->load->view('templates/footer');
+               
+               if(isset($_POST['submitcomment'])) {
+                    if(empty($_POST['comment_body'])) {
+                        $this->session->set_flashdata('error', 'Please add some text to your comment.');
+                    } else {
+                $comment = array(
+                'comment_body' => $this->input->post('comment_body'),
+                'user_id' => $this->input->post('user_id'),
+                );
+                $this->news_model->comments($comment);
+                redirect($this->uri->uri_string());
                 }
+            }
         }
 
         public function singleNews($id){
@@ -46,6 +54,20 @@ class News extends CI_Controller {
                 $this->load->view('templates/header');
                 $this->load->view('pages/singlenews', $data);
                 $this->load->view('templates/footer');
+
+                if(isset($_POST['submitcomment'])) {
+                    if(empty($_POST['comment_body'])) {
+                        $this->session->set_flashdata('error', 'Please add some text to your comment.');
+                    } else {
+                $comment = array(
+                'entry_id' => $this->input->post('news_id'),
+                'comment_body' => $this->input->post('comment_body'),
+                'user_id' => $this->input->post('user_id'),
+                );
+                $this->news_model->comments($comment);
+                redirect($this->uri->uri_string());
+                }
+            }
         }
         
         public function show_comments()

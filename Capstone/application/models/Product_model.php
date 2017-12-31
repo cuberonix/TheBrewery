@@ -28,6 +28,31 @@ class Product_model extends CI_Model
 		return $query->result();
 	}
 
+	public function get_all() {
+		
+		$results = $this->db->get('products')->result();
+		
+		foreach ($results as &$result) {
+			
+			//if ($result->option_values) {
+		//		$result->option_values = explode(',',$result->option_values);
+		//	}
+			
+		}
+		return $results;	
+	}
+
+	public function get($id) {
+		
+		$results = $this->db->get_where('products', array('product_id' => $id))->result();
+		$result = $results[0];
+		
+		//if ($result->option_values) {
+		//	$result->option_values = explode(',',$result->option_values);
+		//}
+		return $result;
+	}
+
 	public function singleProduct($id)
 	{
 		$this->db->select('*');
@@ -35,6 +60,7 @@ class Product_model extends CI_Model
 		$this->db->from('products');
 		$query = $this->db->get();
 		return $query->row();
+
 	}
 
 	public function editProduct($id)
@@ -110,5 +136,10 @@ class Product_model extends CI_Model
 		
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	public function addToTheCart()
+	{
+		
 	}
 }

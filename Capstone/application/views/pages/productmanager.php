@@ -20,7 +20,7 @@ foreach ($products as $product): ?>
     <tr>
         <td><?php echo ++$i; ?></td>
         <td><?php echo $product->product_name;?></td>
-        <td><?php echo $product->product_description;?></td>
+        <td><?php echo substr($product->product_description, 0, 130). "...";?></td>
         <td><?php echo $product->product_price;?></td>
         <td><?php echo $product->upc_code;?></td>
         <td><?php echo $product->sku_code;?></td>

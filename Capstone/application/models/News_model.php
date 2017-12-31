@@ -7,12 +7,6 @@ class News_model extends CI_Model {
                 $this->load->database();
         }
 
-        public function get_last_five_entries()
-        {
-                $query = $this->db->get('entries', 5);
-                return $query->result();
-        }
-
         public function recent_entry()
         {
             $this->db->select('*');
@@ -26,13 +20,13 @@ class News_model extends CI_Model {
         }
 
         public function singleNews($id)
-    {
+        {
         $this->db->select('*');
         $this->db->where('news_id', $id);
         $this->db->from('news');
         $query = $this->db->get();
         return $query->row();
-    }
+        }
 
         public function insert_entry()
         {
@@ -45,16 +39,6 @@ class News_model extends CI_Model {
         $id = $this->db->insert_id();
         return $id;
         }
-
-        public function update_entry()
-        {
-                $this->title    = $_POST['title'];
-                $this->content  = $_POST['content'];
-                $this->date     = time();
-
-                $this->db->update('entries', $this, array('id' => $_POST['id']));
-        }
-
 
         public function all_news()
         {
@@ -85,7 +69,7 @@ class News_model extends CI_Model {
         }
 
         public function updateEntry($id)
-    {
+        {
         $data = array(
                 'news_title' => $this->input->post('news_title'),
                 'news_body' => $this->input->post('news_body'),
@@ -95,7 +79,7 @@ class News_model extends CI_Model {
         $this->db->where('news_id', $id);
         $this->db->update('news', $data);
         return $id;
-    }
+        }
 
         public function deleteNews($id)
         {
@@ -111,13 +95,11 @@ class News_model extends CI_Model {
             return $id;
         }
 
-        public function comments()
+        public function comments($comment)
         {
-            $this->db->select('*');
-            $this->db->where('entry_id');
-            $this->db->from('newscomments');
-            $query = $this->db->get();
-            return $query->row();
+            $this->db->insert('news_comments', $comment);
+            $id = $this->db->insert_id();
+            return $id;
         }
 
 }

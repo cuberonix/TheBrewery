@@ -31,7 +31,6 @@ class User_model extends CI_Model {
 
 	 public function updateUser($username)
 	 {
-
 	 	$data = array(
 				'age' => $this->input->post('age'),
 				'location' => $this->input->post('location'),
@@ -46,6 +45,30 @@ class User_model extends CI_Model {
 	 	return $username;
 	 }
 
+	 public function editUser($id)
+	 {
+	 		$this->db->select('*');
+            $this->db->where('id', $id);
+            $this->db->from('users');
+            $query = $this->db->get();
+            return $query->row();
+	 }
+
+	 public function updateUserManager($id)
+	 {
+	 	$data = array(
+            	'first_name' => $this->input->post('first_name'),
+            	'last_name' => $this->input->post('last_name'),
+                'user_type' => $this->input->post('user_type'),
+                'isActive' => $this->input->post('isActive'),
+                );
+
+            $this->db->select('*');
+            $this->db->where('id', $id);
+            $this->db->update('users', $data);
+            return $id;
+	 }
+
 	 public function getUser($username)
 	 {
 		$this->db->select('*');
@@ -54,5 +77,17 @@ class User_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->row_array();	 
 	
+	 }
+
+	 public function updatePassword($username, $changepass)
+	 {
+	 	$data = array(
+				'password' => $changepass
+			);
+
+		$this->db->select('password');
+	 	$this->db->where('username', $username);
+	 	$this->db->update('users', $data);
+	 	return $username;
 	 }
 }

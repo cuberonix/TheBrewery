@@ -1,3 +1,16 @@
+<style type="text/css">
+  
+  th { 
+      width: 200px;
+      text-align: left;
+   }
+
+   table:hover {
+      background-color: #f5f5f5
+   }
+
+</style>
+
 <h2>Products</h2>
 
 <body>
@@ -9,8 +22,17 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Product Name</th>
-        <td><a href="<?php echo base_url(); ?>index.php/products/singleproduct/<?php echo $product->product_id;?>"><?php echo $product->product_name;?></a></td>
+        <th><h3><a href="<?php echo base_url(); ?>index.php/products/singleproduct/<?php echo $product->product_id;?>"><?php echo $product->product_name;?></a></h3></th>
+      </tr>
+      <tr>
+        <?php 
+            $productn = $product->product_name;
+            $filename = './assets/product_images/' . $productn . '.png';
+            if(file_exists($filename)){ ?>
+              <img src = "<?php echo '/capstone/assets/product_images/' . $productn . '.png'?>" alt = "Product Pic" height = 150 width = 100 />
+            <?  clearstatcache(); } else {  ?>
+            <img src = "<?php echo '/capstone/assets/product_images/default/blank_beer.png';?>" alt = "Product Pic" height = 150 width = 100 />
+            <? clearstatcache(); } ?>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +55,7 @@
       </tr>
       <tr>
         <th scope="row">Description</th>
-        <td><?php echo substr($product->product_description, 0, 20);?></td>
+        <td><?php echo substr($product->product_description, 0, 50)."...";?></td>
       </tr>
       <tr>
         <th scope="row">Price</th>
@@ -45,4 +67,6 @@
 </table>
 <?php } ?>
 </div>
+
+
 

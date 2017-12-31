@@ -25,7 +25,7 @@ foreach ($users as $user): ?>
                       }else{
                       echo "Inactive";
                       }; ?> </td>
-        <td><b><a href ="<?php echo base_url(); ?>index.php/manager/singleuser">Edit</a></b></td>
+        <td><b><a href ="<?php echo base_url(); ?>index.php/manager/editUser/<?php echo $user->id;?>">Edit</a></b></td>
     </tr>
 <?php endforeach; ?>
 

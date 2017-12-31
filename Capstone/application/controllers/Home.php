@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 
         public function index()
         {
-                $this->load->model('news_model');
+            $this->load->model('news_model');
             $news = $this->news_model->recent_entry();
             $data['news'] = $news;
             $this->load->view('templates/header');
@@ -32,4 +32,12 @@ class Home extends CI_Controller {
         {
             $this->load->view('pages/test');
         }
+
+        public function search(){
+            if($_POST['searchbtn']) {
+                $this->load->view('templates/header');
+                $this->load->view('pages/search');
+                $this->load->view('templates/footer');
+            }
+    }
 }

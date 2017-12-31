@@ -47,15 +47,20 @@
 			        <a class="nav-link" href="<?= base_url("index.php/Profile/user");?>"> Profile</a>
 			      </li>
 			      <?php } ?>
-			      
+
+			      <?php if (isset($_SESSION['username'])) { ?>
+			      <li class="nav-item">
+			        <a class="nav-link" href="<?= base_url('index.php/Products/shoppingCart');?>">Cart</a>
+			      </li>
+			      <?php } ?>
+
 			    </ul>
-			    <form class="form-inline my-2 my-lg-0">
+			    <form class="form-inline my-2 my-lg-0" method="POST">
 			      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name = "searchbtn">Search</button>
 			    </form>
 			  </div>
 			</nav>
        </header>
-
        <div class = "container">
        </br>

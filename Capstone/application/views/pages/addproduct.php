@@ -9,7 +9,7 @@
 	<h4>Product description:</h4>
 	<input type="age" class="form-control" name="product_description" placeholder="Description">
 	<h4>Price:</h4>
-	<input type="age" class="form-control" name="product_price" placeholder="How much?">
+	<input type="age" class="form-control" name="product_price" placeholder="No $ sign">
 	<h4>UPC:</h4>
 	<input type="age" class="form-control" name="upc_code" placeholder="UPC">
 	<h4>SKU:</h4>

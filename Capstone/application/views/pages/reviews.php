@@ -7,7 +7,7 @@
 		$sql = mysqli_query($con, "SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'");
 		$row = mysqli_fetch_array($sql);
 		$user_id = $row['id'];
-	
+	}
 	 ?>
 	 <?php $product_id = $product->product_id; ?>
 
@@ -22,7 +22,7 @@
 	 ?>
 
 <div class = "modal-body row">
-<div class = "col-md-8">
+<div class = "col-md-7">
 	<h4>User Reviews</h4>
 	<?php while ($row = mysqli_fetch_array($sql)) { ?>
 	<table class="table">
@@ -52,15 +52,17 @@
 </table>
 
 </div>
-<div class = "col-md-4">
+<div class = "col-md-5">
 	<form method = "POST">
 	<label><h4>Add your review...</h4></label>
 	</br>
-	<input type ="text" name = "product_title" placeholder="Add a title" cols = "30" <?php if(!isset($_SESSION['username'])){ echo 'readonly="true"'; }?>/>
+	<input type ="text" name = "product_title" placeholder="Add a title" <?php if(!isset($_SESSION['username'])){ echo 'readonly="true"'; }?>/>
 	
 	<!-- Hidden from user, gets product and user ID -->
 	<input type ="text" name = "product_id" value = "<?php echo $product_id; ?>" readonly="true" hidden = "true"/> 
+	<?php if(isset($_SESSION['username'])) { ?>
 	<input type ="text" name = "user_id" value = "<?php echo $user_id; ?>" readonly="true" hidden = "true"/> 
+	<?php } ?>
 
 	</br>
 	</br>
@@ -75,9 +77,10 @@
 	</select>
 	</br>
 	</br>
-	<textarea rows = "4" cols = "30" name = "product_review" placeholder="Tell us what you think..." <?php if(!isset($_SESSION['username'])){ echo 'disabled'; }?> ></textarea>
+	<textarea rows = "4" cols = "35" name = "product_review" placeholder="Tell us what you think..." <?php if(!isset($_SESSION['username'])){ echo 'disabled'; }?> ></textarea>
 </br>
-	<?php } 
+</br>
+	<?php 
 	if(!isset($_SESSION['username'])){
 	echo "Please login or create an account to review this product.";
 } else { echo '<button class = "btn btn-primary" name = "submitreview">Submit Review</button>';}?>

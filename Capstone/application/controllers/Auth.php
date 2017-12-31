@@ -12,8 +12,9 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'required');
         if($this->form_validation->run()== TRUE){
         	
-        	$username =$_POST['username'];
+        	$username = $_POST['username'];
         	$password = md5($_POST['password']);
+            $isActive;
 
         	$this->db->select('*');
         	$this->db->from('users');
@@ -22,7 +23,7 @@ class Auth extends CI_Controller {
 
         	$user = $query->row();
 
-        	if($user->email){
+        	if($user->username == $username && $user->password == $password){
         			$this->session->set_flashdata("success", "You are now logged in.");
 
         			$_SESSION['user_logged'] = TRUE;
@@ -31,7 +32,7 @@ class Auth extends CI_Controller {
         			redirect("profile/user", "refresh");
         	} else {
                 redirect("auth/login", "refresh");
-        		$this->session->set_flashdata("error", " There was an error. Please try again.");
+        		$this->session->set_flashdata("error", " Wrong username or password. Please try again.");
         		redirect("auth/login", "refresh");
         	}
         }
@@ -54,10 +55,10 @@ class Auth extends CI_Controller {
 		date_default_timezone_set("America/New_York");
 
         if(isset($_POST['register'])){
-			$this->form_validation->set_rules('username', 'Username', 'required');
+			$this->form_validation->set_rules('username', 'Username', 'required|min_length[4]|max_length[30]|is_unique[users.username]');
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[30]');
 			$this->form_validation->set_rules('password1', 'Confirm Password', 'required|matches[password]');
-			$this->form_validation->set_rules('email', 'Email', 'required|min_length[5]');
+			$this->form_validation->set_rules('email', 'Email', 'required|min_length[4]');
 			
 			if($this->form_validation->run() == TRUE){
 
